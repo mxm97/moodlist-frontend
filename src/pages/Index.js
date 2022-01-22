@@ -5,15 +5,12 @@ function Index(props) {
     // state to fold the form data
     const [newForm, setNewForm] = useState({
         name: '',
-        background: '',
+        image: '',
     })
 
     // handleChange for the form input
     const handleChange = (event) => {
-        setNewForm((prevState) => ({
-            ...prevState,
-            [event.target.name]: event.target.value,
-        }))
+        setNewForm({...newForm, [event.target.name]: event.target.value })
     }
 
     // handleSubmit function for the form
@@ -22,7 +19,7 @@ function Index(props) {
         props.createMood(newForm);
         setNewForm({
             name: '',
-            background: '',
+            image: '',
         })
     }
 
@@ -53,9 +50,9 @@ function Index(props) {
                 />
                 <input
                     type="text"
-                    value={newForm.background}
-                    name="background"
-                    placeholder="background URL"
+                    value={newForm.image}
+                    name="image"
+                    placeholder="image URL"
                     onChange={handleChange}
                 />
                 <input type="submit" value="Create Mood" />

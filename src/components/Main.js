@@ -29,6 +29,28 @@ function Main(props) {
         getMood()
     }
 
+    const updateMood = async (mood, id) => {
+        // make a PUT request to create mood
+        await fetch(URL + id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "Application/json"
+            },
+            body: JSON.stringify(mood),
+        })
+        // update list of Moods
+        getMood()
+    }
+
+    const deleteMood = async (id) => {
+        // make DELETE request to create Mood
+        await fetch(URL + id, {
+            method: "DELETE",
+        })
+        // update the list of Moods
+        getMood()
+    }
+
     // runs getMood ONCE when component is mounted
     useEffect(() => getMood(), []) // the [] tells code to run a single time
 
@@ -38,7 +60,17 @@ function Main(props) {
                 <Route exact path="/">
                     <Index mood={mood} createMood={createMood} />
                 </Route>
-                <Route path="/moods/:id" render={(rp) => <Show {...rp} />} />
+                <Route 
+                    path="/moods/:id"
+                    render={(rp) => (
+                        <Show 
+                            mood={mood}
+                            updateMood={updateMood}
+                            deleteMood={deleteMood}
+                            {...rp}
+                        />
+                    )}
+                />
             </Switch>
         </main>
     )
