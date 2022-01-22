@@ -1,5 +1,68 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 function Index(props) {
-    return <h1>This is the Index</h1>
+    // state to fold the form data
+    const [newForm, setNewForm] = useState({
+        name: '',
+        background: '',
+    })
+
+    // handleChange for the form input
+    const handleChange = (event) => {
+        setNewForm((prevState) => ({
+            ...prevState,
+            [event.target.name]: event.target.value,
+        }))
+    }
+
+    // handleSubmit function for the form
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        props.createMood(newForm);
+        setNewForm({
+            name: '',
+            background: '',
+        })
+    }
+
+    // loaded function
+    const loaded = () => {
+        return props.moods.map((mood) => (
+            <div key={mood._id} className="mood">
+                <Link to={`/moods/${mood._id}`}>
+                    <h1>{mood.name}</h1>
+                </Link>
+            </div>
+        ))
+    }
+
+    const loading = () => {
+        return <h1>Loading...</h1>
+    }
+
+    return (
+        <section>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={newForm.name}
+                    name="name"
+                    placeholder="name"
+                    onChange={handleChange}
+                />
+                <input
+                    type="text"
+                    value={newForm.background}
+                    name="background"
+                    placeholder="background URL"
+                    onChange={handleChange}
+                />
+                <input type="submit" value="Create Mood" />
+            </form>
+            {props.moods ? loaded() : loading()}
+        </section>
+    )
 };
 
 export default Index;
