@@ -5,69 +5,69 @@ import Show from "../pages/Show";
 
 function Main(props) {
 
-    const [mood, setMood] = useState([]); //expecting my state to be set to an array, so using [] instead of "null"
+    const [background, setBackground] = useState([]); //expecting my state to be set to an array, so using [] instead of "null"
 
-    const URL = "http://localhost:3000/moods/";
+    const URL = "https://wallpaper-radio.herokuapp.com/backgrounds/";
 
-    // retrieve all Moods
-    const getMood = async () => {
+    // retrieve all Background
+    const getBackground = async () => {
         const response = await fetch(URL);
         const data = await response.json();
-        setMood(data);
+        setBackground(data);
     }
 
-    const createMood = async (person) => {
-        // make a post request to create a Mood
+    const createBackground = async (background) => {
+        // make a post request to create a Background
         await fetch(URL, {
             method: "POST",
             headers: {
                 "Content-Type": "Application/json",
             },
-            body: JSON.stringify(person), // converts body data into a string, sends the body data
+            body: JSON.stringify(background), // converts body data into a string, sends the body data
         })
-        // update the list of Moods
-        getMood()
+        // update the list of Background
+        getBackground()
     }
 
-    const updateMood = async (mood, id) => {
-        // make a PUT request to create mood
+    const updateBackground = async (background, id) => {
+        // make a PUT request to create Background
         await fetch(URL + id, {
             method: "PUT",
             headers: {
                 "Content-Type": "Application/json"
             },
-            body: JSON.stringify(mood),
+            body: JSON.stringify(background),
         })
-        // update list of Moods
-        getMood()
+        // update list of Background
+        getBackground()
     }
 
-    const deleteMood = async (id) => {
-        // make DELETE request to create Mood
+    const deleteBackground = async (id) => {
+        // make DELETE request to create Background
         await fetch(URL + id, {
             method: "DELETE",
         })
-        // update the list of Moods
-        getMood()
+        // update the list of Background
+        getBackground()
     }
 
     // runs getMood ONCE when component is mounted
-    useEffect(() => getMood(), []) // the [] tells code to run a single time
+    useEffect(() => getBackground(), []) // the [] tells code to run a single time
 
     return(
         <main>
             <Switch>
                 <Route exact path="/">
-                    <Index mood={mood} createMood={createMood} />
+                    <Index background={background} createBackground={createBackground} />
                 </Route>
                 <Route 
-                    path="/moods/:id"
+                    path="/background/:id"
                     render={(rp) => (
                         <Show 
-                            mood={mood}
-                            updateMood={updateMood}
-                            deleteMood={deleteMood}
                             {...rp}
+                            background={background}
+                            updateBackground={updateBackground}
+                            deleteBackground={deleteBackground}
                         />
                     )}
                 />
