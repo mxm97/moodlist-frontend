@@ -60,7 +60,7 @@ function Main(props) {
                 <Route exact path="/">
                     <Index backgrounds={backgrounds} createABackground={createABackground} />
                 </Route>
-                <Route path="/background/:id" render={(rp) => (
+                <Route path="/backgrounds/:id" render={(rp) => (
                     <Show 
                         {...rp}
                         updateABackground={updateABackground}

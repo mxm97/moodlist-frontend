@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 function Show(props){
+    console.log(props)
     const id = props.match.params.id; // .match gives access to URL param
     const background = props.backgrounds.find(background => background._id === id);
 
