@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AudioPlayer } from "../components/AudioPlayer";
 
 function Index(props) {
     // state to fold the form data
@@ -62,6 +63,11 @@ function Index(props) {
                 <input type="submit" value="Add Background" />
             </form>
             {props.backgrounds ? loaded() : loading()}
+
+            <div>
+                <AudioPlayer />
+            </div>
+            
         </section>
     )
 };
