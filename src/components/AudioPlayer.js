@@ -31,7 +31,7 @@ function AudioPlayer(props) {
 
             {/* Progress Bar */}
             <div>
-                <input type="range" />
+                <input type="range" className="progressBar"/>
             </div>
 
             {/* Duration */}
