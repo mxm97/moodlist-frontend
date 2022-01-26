@@ -1,19 +1,41 @@
+import { useState } from "react";
+import "../styles/AudioPlayer.css";
+import { BsArrowLeftShort } from "react-icons/bs";
+import { BsArrowRightShort } from "react-icons/bs";
+import { FaPlay } from "react-icons/fa";
+import { FaPause } from "react-icons/fa";
+
 function AudioPlayer(props) {
+
+    const [isPlaying, setIsPlaying] = useState(false); // set useState to false initially b/c we don't want audio to play automatically on page load
+
+    const togglePlayPause = () => {
+        setIsPlaying(!isPlaying); // toggles the isPlaying state to change which button icon is displayed
+    }
+
     return(
-        <div>
-            <audio src="https://soundcloud.com/lofi-hip-hop-music/sets/lofi-hip-hop-beats?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" preload="metadata"></audio>
-            <button>Rewind 30 seconds</button>
-            <button>Play/Pause</button>
-            <button>Fastforward 30 seconds</button>
+        <div className="audioPlayer">
+            <audio src="https://soundcloud.com/discolithe/maria-takeuchi-plastic-love" preload="metadata"></audio>
+            <button className="forwardBackward">
+                <BsArrowLeftShort /> 30
+            </button>
+            <button onClick={togglePlayPause} className="playPause">
+                {isPlaying ? <FaPause /> : <FaPlay className="playButton" />} {/* Toggles which icon displays depending on whether or not audio is currently playing */}
+            </button>
+            <button className="forwardBackward">
+                30 <BsArrowRightShort />
+            </button>
 
             {/* Current Time */}
-            <div>0:00</div>
+            <div className="currentTime">0:00</div>
 
             {/* Progress Bar */}
-            <div type="range"></div>
+            <div>
+                <input type="range" />
+            </div>
 
             {/* Duration */}
-            <div>2:49</div>
+            <div className="duration">7:56</div>
 
         </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import scss file
-import './styles.scss'
+import './styles/styles.scss'
 
 import './index.css';
 
