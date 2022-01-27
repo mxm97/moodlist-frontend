@@ -61,18 +61,28 @@ function AudioPlayer(props) {
         setCurrentTime(progressBar.current.value);
     }
 
+    const backFifteen = () => {
+        progressBar.current.value = Number(progressBar.current.value - 15);
+        changeRange();
+    }
+
+    const forwardFifteen = () => {
+        progressBar.current.value = Number(progressBar.current.value + 15);
+        changeRange();
+    }
+
     return(
         <div className="audioPlayer">
             {/* Audio play works, just need to find a good place to host my audio file */}
             <audio ref={audioPlayer} src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3" preload="metadata"></audio>
-            <button className="forwardBackward">
-                <BsArrowLeftShort /> 30
+            <button className="forwardBackward" onClick={backFifteen}>
+                <BsArrowLeftShort /> 15
             </button>
             <button onClick={togglePlayPause} className="playPause">
                 {isPlaying ? <FaPause /> : <FaPlay className="playButton" />} {/* Toggles which icon displays depending on whether or not audio is currently playing */}
             </button>
-            <button className="forwardBackward">
-                30 <BsArrowRightShort />
+            <button className="forwardBackward" onClick={forwardFifteen}>
+                15 <BsArrowRightShort />
             </button>
 
             {/* Current Time */}
