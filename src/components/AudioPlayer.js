@@ -14,10 +14,13 @@ function AudioPlayer(props) {
 
     // References
     const audioPlayer = useRef(); // reference the Audio Player component
+    const progressBar = useRef(); // reference to the Progress bar
+    const animationRef = useRef(); // reference to the progress handle animation slider
 
     useEffect(() => {
-        const seconds = Math.floor(audioPlayer.current.duration);
+        const seconds = Math.floor(audioPlayer.current.duration); // .current references the current item in our reference
         setDuration(seconds);
+        progressBar.current.max = seconds; 
     }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]); 
 
     const calculateTime = (secs) => { // function to format duration in MM:SS format
@@ -35,9 +38,27 @@ function AudioPlayer(props) {
         setIsPlaying(!prevValue); // toggles the isPlaying state to change which button icon is displayed
         if (!prevValue) {
             audioPlayer.current.play();
+            animationRef.current = requestAnimationFrame(whilePlaying);
         } else {
             audioPlayer.current.pause();
+            cancelAnimationFrame(animationRef.current)
         }
+    }
+
+    const whilePlaying = () => {
+        progressBar.current.value = audioPlayer.current.currentTime;
+        changePlayerCurrentTime();
+        animationRef.current = requestAnimationFrame(whilePlaying); 
+    }
+
+    const changeRange = () => {
+        audioPlayer.current.currentTime = progressBar.current.value;
+        changePlayerCurrentTime();
+    }
+
+    const changePlayerCurrentTime = () => {
+        progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`) // dragging the progress handle updates the time readout next to progress bar
+        setCurrentTime(progressBar.current.value);
     }
 
     return(
@@ -59,7 +80,7 @@ function AudioPlayer(props) {
 
             {/* Progress Bar */}
             <div>
-                <input type="range" className="progressBar" defaultValue="0" />
+                <input type="range" className="progressBar" defaultValue="0" ref={progressBar} onChange={changeRange} />
             </div>
 
             {/* Duration */}
