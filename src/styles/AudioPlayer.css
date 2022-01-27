@@ -50,7 +50,7 @@
 /* progressBar styling for Google Chrome */
 .progressBar {
     --bar-background: rgb(197, 255, 255);
-    --seek-before-width: 100px;
+    --seek-before-width: 0;
     --seek-before-color: rgb(19, 253, 253);
     --progress-handle: rgb(255, 205, 113);
     --selected-progress-handle: orange;
