@@ -14,6 +14,7 @@ function Main(props) {
         const response = await fetch(URL);
         const data = await response.json();
         setBackgrounds(data);
+        localStorage.setItem("data", JSON.stringify(data));
     };
 
     const createABackground = async (background) => {
@@ -51,8 +52,14 @@ function Main(props) {
         getBackgrounds()
     };
 
-    // runs getMood ONCE when component is mounted
-    useEffect(() => getBackgrounds(), []) // the [] tells code to run a single time
+    // runs getBackgrounds ONCE when component is mounted
+    useEffect(() => {
+        getBackgrounds()
+
+    }, []) // the [] tells code to run a single time
+
+    // const background = props.backgrounds.find(background => background._id === id);
+    // localStorage.setItem("background", JSON.stringify(background));
 
     return(
         <main>
@@ -60,14 +67,17 @@ function Main(props) {
                 <Route exact path="/">
                     <Index backgrounds={backgrounds} createABackground={createABackground} />
                 </Route>
-                <Route path="/backgrounds/:id" render={(rp) => (
-                    <Show 
+                <Route path="/backgrounds/:id" render={(rp) => {
+                    console.log(rp.match.params.id)
+                    const background = backgrounds.find(background => background._id === rp.match.params.id);
+                    localStorage.setItem("background", JSON.stringify(background));
+                    return(<Show 
                         {...rp}
                         updateABackground={updateABackground}
                         deleteABackground={deleteABackground}
-                        backgrounds={backgrounds}
-                    />
-                )} />
+                        backgrounds={background}
+                    />)
+                }} />
             </Switch>
         </main>
     )
