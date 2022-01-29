@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "../styles/Index.css";
 
 function Index(props) {
     // state to fold the form data
@@ -26,31 +27,25 @@ function Index(props) {
         })
     }
 
-    // Display initial background image
-    // const showFirstBackground = () => {
-    //     // console.log(props.backgrounds[0])
-    //     return (
-    //         <div className="background">
-    //             <Link to={`/backgrounds/${props.backgrounds[0]._id}`}>
-    //                 <h1>{props.backgrounds[0].name}</h1>
-    //             </Link>
-    //             <img src={props.backgrounds[0].url} alt={props.backgrounds[0].name} />
-    //         </div>
-    //     )
-    // }
-    // Have button that will cycle through background images
-
     // loaded function
     const loaded = () => {
         // console.log(props.backgrounds[0])
-        return props.backgrounds.map((background) => (
-            <div key={background._id} className="background">
-                <Link to={`/backgrounds/${background._id}`}>
-                    <h1>{background.name}</h1>
-                </Link>
-                <img src={background.url} alt={background.name} />
+        return (
+            <div className="index-tile-wrapper">
+            {
+                props.backgrounds.map((background) => (
+                    <figure key={background._id} className="effect-index" >
+                        <Link to={`/backgrounds/${background._id}`}>
+                            <img src={background.url} alt={background.name} className="index-background"/>
+                            <figcaption>
+                                <h1>{background.name}</h1>
+                            </figcaption>
+                        </Link>
+                    </figure>
+                ))
+            }
             </div>
-        ))
+        )
     }
 
     const loading = () => {
