@@ -11,6 +11,7 @@ function Index(props) {
 
     // handleChange for the form input, captures user input as it's typed
     const handleChange = (event) => {
+        if(!props.user) return; // prevents typing into input tag unless logged in
         setNewForm((prevState) => ({
             ...prevState, // captures keystroke data
             [event.target.name]: event.target.value, // [event.target.name] get converted to (a key) name or url depending on input field being typed in
@@ -19,6 +20,7 @@ function Index(props) {
 
     // handleSubmit function for the form
     const handleSubmit = (event) => {
+        if(!props.user) return; // prevents form submission unless logged in
         event.preventDefault();
         props.createABackground(newForm);
         setNewForm({
@@ -39,10 +41,10 @@ function Index(props) {
                     <figure key={background._id} className="effect-index" >
                         <Link to={`/backgrounds/${background._id}`} className="index-link">
                             <img src={background.url} alt={background.name} className="index-background"/>
-                            <figcaption>
-                                <h1>{background.name}</h1>
-                            </figcaption>
                         </Link>
+                        <figcaption>
+                                <h1>{background.name}</h1>
+                        </figcaption>
                     </figure>
                 ))
             }

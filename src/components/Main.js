@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Redirect } from "react-router";
 import { Route, Switch } from "react-router-dom";
 import Index from "../pages/Index";
 import Show from "../pages/Show";
@@ -60,18 +61,19 @@ function Main(props) {
         <main>
             <Switch>
                 <Route exact path="/">
-                    <Index backgrounds={backgrounds} createABackground={createABackground} />
+                    <Index user={props.user} backgrounds={backgrounds} createABackground={createABackground} />
                 </Route>
-                <Route path="/backgrounds/:id" render={(rp) => {
-                    return(
-                        <Show 
-                            {...rp}
-                            updateABackground={updateABackground}
-                            deleteABackground={deleteABackground}
-                            backgrounds={backgrounds}
-                        />)
-                    }} 
-                />
+                <Route path="/backgrounds/:id" render={(rp) => (
+                    props.user ?
+                    <Show 
+                        {...rp}
+                        updateABackground={updateABackground}
+                        deleteABackground={deleteABackground}
+                        backgrounds={backgrounds}
+                    />
+                    :
+                    <Redirect to="/" />
+                )} />
             </Switch>
         </main>
     )

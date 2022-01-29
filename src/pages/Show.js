@@ -30,13 +30,21 @@ function Show(props){
 
     return(
         <div className="show-container">
+            <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+            </style>
+
             <h1>{background.name}</h1>
 
             {
                 background.url && <img src={background.url} alt={background.name} className="background-image" /> // img tag won't render unless background has a URL
             }   {/* operand right of && won't execute unless the left operand evaluates to truthy*/}
 
-            <form onSubmit={handleSubmit}>
+            <div className="audio-container" >
+                <AudioPlayer />
+            </div>
+
+            <form onSubmit={handleSubmit} className="update-background-form" > 
                 <input 
                     type="text"
                     value={editForm.name}
@@ -51,16 +59,12 @@ function Show(props){
                     placeholder="background URL"
                     onChange={handleChange}
                 />
-                <input type="submit" value="Update Background" />
+                <input type="submit" value="Update Background" className="update-button" />
             </form>
 
             <button id="delete" onClick={removeBackground} className="delete-button" >
                 Delete Background
             </button>
-            
-            <div className="audio-container" >
-                <AudioPlayer />
-            </div>
         </div>
         
     )
