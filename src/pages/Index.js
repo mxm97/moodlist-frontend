@@ -32,10 +32,13 @@ function Index(props) {
         // console.log(props.backgrounds[0])
         return (
             <div className="index-tile-wrapper">
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+                </style>
             {
                 props.backgrounds.map((background) => (
                     <figure key={background._id} className="effect-index" >
-                        <Link to={`/backgrounds/${background._id}`}>
+                        <Link to={`/backgrounds/${background._id}`} className="index-link">
                             <img src={background.url} alt={background.name} className="index-background"/>
                             <figcaption>
                                 <h1>{background.name}</h1>
@@ -54,6 +57,8 @@ function Index(props) {
 
     return (
         <section>
+            {props.backgrounds ? loaded() : loading()}
+            
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -71,8 +76,6 @@ function Index(props) {
                 />
                 <input type="submit" value="Add Background" />
             </form>
-            {props.backgrounds ? loaded() : loading()}
-            
         </section>
     )
 };
