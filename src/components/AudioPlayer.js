@@ -74,7 +74,7 @@ function AudioPlayer(props) {
     return(
         <div className="audioPlayer">
             {/* Audio play works, just need to find a good place to host my audio file */}
-            <audio ref={audioPlayer} src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3" preload="metadata"></audio>
+            <audio ref={audioPlayer} src="https://od.lk/s/OThfMzMxMjczNTJf/side%20streets.%20%5Blofi%20_%20jazz%20hop%20_%20chill%20beats%5D.mp3" preload="metadata"></audio>
             <button className="forwardBackward" onClick={backFifteen}>
                 <BsArrowLeftShort /> 15
             </button>
