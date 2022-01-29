@@ -1,6 +1,10 @@
 .index-tile-wrapper {
     display: flex;
     flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    font-family: 'Poppins', sans-serif;
 }
 
 .index-background {
@@ -8,9 +12,31 @@
     height: 200px;
 }
 
+.index-link {
+    color: black;
+    text-decoration: none;
+}
+
+.add-background-form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-button {
+    background-color: rgb(204, 204, 204);
+    color: rgb(23, 137, 230);
+    font-family: 'Poppins', sans-serif;
+}
+
+figcaption h1 {
+    color: rgb(0, 106, 192);
+}
+
 /* START Index page image hover effects */
 figure.effect-index #index-background{
-    opacity: 0.8;
+    opacity: 0.9;
     transition: 0.3s;
     -webkit-transition: opacity 0.35s;
 }

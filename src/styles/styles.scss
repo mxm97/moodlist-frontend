@@ -1,6 +1,6 @@
 // Variables
-$maincolor: black;
-$contrastcolor: white;
+$maincolor: rgb(204, 204, 204);
+$contrastcolor: rgb(23, 137, 230);
 
 @mixin white-text-black-bg {
     color: $contrastcolor;
@@ -26,5 +26,8 @@ nav {
             margin: 10px;
             font-size: large;
         }
+
+        text-decoration: none;
     }
+    font-family: 'Poppins', sans-serif;
 }

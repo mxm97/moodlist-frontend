@@ -1,10 +1,15 @@
 .show-container {
     display: flex;
     flex-flow: row wrap;
+    font-family: 'Poppins', sans-serif;
 }
 
 .show-container > * {
     flex: 1 100%;
+}
+
+.background-image {
+    max-width: 100%;
 }
 
 .audio-container {
@@ -13,8 +18,22 @@
     margin-bottom: 1%;
 }
 
+.update-background-form {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.update-button {
+    background-color: rgb(204, 204, 204);
+    color: rgb(23, 137, 230);
+    font-family: 'Poppins', sans-serif;
+}
+
 .delete-button {
-    flex: 2 20%;
+    margin-top: 1%;
     background-color: rgb(255, 102, 102);
     color: white;
+    font-family: 'Poppins', sans-serif;
 }
