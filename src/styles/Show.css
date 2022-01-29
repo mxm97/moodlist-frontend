@@ -1,0 +1,20 @@
+.show-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.show-container > * {
+    flex: 1 100%;
+}
+
+.audio-container {
+    margin-top: 1%;
+    margin-left: 35%;
+    margin-bottom: 1%;
+}
+
+.delete-button {
+    flex: 2 20%;
+    background-color: rgb(255, 102, 102);
+    color: white;
+}

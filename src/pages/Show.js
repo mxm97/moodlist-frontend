@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { AudioPlayer } from "../components/AudioPlayer";
+import "../styles/Show.css";
 
 function Show(props){
     
-    const data = JSON.parse(localStorage.getItem("background")) // .match gives access to URL param
-    // const background = props.backgrounds.find(background => background._id === id);
-    // localStorage.setItem("background", JSON.stringify(background));
-    console.log(data._id);
-    const id = data._id;
+    const id = props.match.params.id; // gives access to URL param
+    const background = props.backgrounds.find(background => background._id === id);
 
     // state
-    const [editForm, setEditForm] = useState(JSON.parse(localStorage.getItem("background")));
-    const [bg, setBg] = useState(JSON.parse(localStorage.getItem("background")));
+    const [editForm, setEditForm] = useState(background);
 
     const handleChange = (event) => {
         setEditForm({
@@ -32,14 +29,12 @@ function Show(props){
     }
 
     return(
-        <div className="background">
-            <h1>{bg.name}</h1>
+        <div className="show-container">
+            <h1>{background.name}</h1>
+
             {
-                bg.url && <img src={bg.url} alt={bg.name} /> // img tag won't render unless background has a URL
+                background.url && <img src={background.url} alt={background.name} className="background-image" /> // img tag won't render unless background has a URL
             }   {/* operand right of && won't execute unless the left operand evaluates to truthy*/}
-            <button id="delete" onClick={removeBackground}>
-                Delete Background
-            </button>
 
             <form onSubmit={handleSubmit}>
                 <input 
@@ -58,8 +53,12 @@ function Show(props){
                 />
                 <input type="submit" value="Update Background" />
             </form>
+
+            <button id="delete" onClick={removeBackground} className="delete-button" >
+                Delete Background
+            </button>
             
-            <div>
+            <div className="audio-container" >
                 <AudioPlayer />
             </div>
         </div>
