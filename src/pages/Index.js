@@ -29,7 +29,6 @@ function Index(props) {
 
     // loaded function
     const loaded = () => {
-        // console.log(props.backgrounds[0])
         return (
             <div className="index-tile-wrapper">
                 <style>
@@ -58,8 +57,8 @@ function Index(props) {
     return (
         <section>
             {props.backgrounds ? loaded() : loading()}
-            
-            <form onSubmit={handleSubmit}>
+
+            <form onSubmit={handleSubmit} className="add-background-form">
                 <input
                     type="text"
                     value={newForm.name}
@@ -74,7 +73,7 @@ function Index(props) {
                     placeholder="image URL"
                     onChange={handleChange}
                 />
-                <input type="submit" value="Add Background" />
+                <input type="submit" value="Add Background" className="submit-button" />
             </form>
         </section>
     )
