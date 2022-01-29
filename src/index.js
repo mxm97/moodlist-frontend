@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 // import scss file
 import './styles/styles.scss'
 
-import './index.css';
-
 // import Router
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
