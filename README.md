@@ -13,9 +13,9 @@
 - Google Firebase
 
 ## Screenshots
-![Imgur](https://imgur.com/ASH0Zb2)
+![Imgur](https://i.imgur.com/ASH0Zb2.png)
 
-![Imgur](https://imgur.com/EIl1Y8o)
+![Imgur](https://i.imgur.com/EIl1Y8o.png)
 
 # Getting Started
 [Click here](https://wallpaper-radio.netlify.app/) to see the site live.
